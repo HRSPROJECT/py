@@ -15,7 +15,10 @@ client = Together(api_key=get_api_key())
 def get_duckduckgo_results(query):
     """Fetch search results from DuckDuckGo."""
     url = f"https://duckduckgo.com/html/?q={query}"
+    print(f"DuckDuckGo URL: {url}") # added print statement here
     response = requests.get(url)
+    print(f"Response status code: {response.status_code}") # added print statement here
+    print(f"Response Text: {response.text}") # added print statement here
     soup = BeautifulSoup(response.text, 'html.parser')
 
     results = soup.find_all('a', class_='result__a')
@@ -73,7 +76,7 @@ def main():
 
     # Get user query
     user_query = st.text_input("What would you like to search for?")
-
+    print(f"User query: {user_query}") # added print statement here
     # Search only when query is entered
     if user_query:
         # Fetch search results from DuckDuckGo
